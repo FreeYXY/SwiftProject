@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>bannerName</key>
+		<string>华为P20</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/content/1537257775785.jpg</string>
+		<key>openType</key>
+		<string>1</string>
+		<key>openUrl</key>
+		<string>HW_P20/3</string>
+	</dict>
+	<dict>
+		<key>bannerName</key>
+		<string>华为荣耀10</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/content/1526380127239.png</string>
+		<key>openType</key>
+		<string>1</string>
+		<key>openUrl</key>
+		<string>HW_RY10/3</string>
+	</dict>
+</array>
+</plist>

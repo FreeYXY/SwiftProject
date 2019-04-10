@@ -54,19 +54,7 @@ class PromotionSubVC: UIViewController {
                 self!.promotionModel = respone.data as? PromotionModel
                 self!.collectionView.reloadData()
                 
-                // 写入文件
-                let home = NSHomeDirectory()
-                // 拼接路径
-                let docPath = home.fileByAppendingPaths(byAppendingPaths: "Documents/BimineData/")
-                if !docPath.fileExist() {
-                    docPath.fileCreateDirectory()
-                }
-                // 3、获取文本文件路径
-                let filePath = docPath.fileByAppendingPaths(byAppendingPaths: "goods\(self!.menuCode!).plist")
-                let tempArr = NSMutableArray()
-                tempArr.addObjects(from: (self!.promotionModel?.activityGoods!.toJSON())! as [Any])
-                let rest = tempArr.write(toFile: filePath, atomically: true)
-                DLog(message: "\(rest)================ \(NSHomeDirectory())")
+            
                 
             }else{
                self!.readDataFromLocal()
@@ -78,8 +66,8 @@ class PromotionSubVC: UIViewController {
     }
     /// 读取本地数据
     func readDataFromLocal(){
-        let home = NSHomeDirectory() + "/Documents/BimineData/goods\(self.menuCode!).plist"
-        let menuArr = NSArray(contentsOfFile: home)
+        let home = Bundle.main.path(forResource: "goods\(self.menuCode!)", ofType: "plist")
+        let menuArr = NSArray(contentsOfFile: home!)
         let tempArr  = JSONDeserializer<GoodsModel>.deserializeModelArrayFrom(array: menuArr) as! Array<GoodsModel>
         let tempModel = PromotionModel()
         tempModel.activityGoods = tempArr

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>bannerName</key>
+		<string>cpb隔离专柜日版</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/content/1551262998626.png</string>
+		<key>openType</key>
+		<string>1</string>
+		<key>openUrl</key>
+		<string>RB_CPB_gls_black/2/eb4f99bb199bf4c9014e/MZXH</string>
+	</dict>
+	<dict>
+		<key>bannerName</key>
+		<string>club晚安粉-彩色玫瑰</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/content/1551262911182.png</string>
+		<key>openType</key>
+		<string>1</string>
+		<key>openUrl</key>
+		<string>club_waf_rose/2/eb4f99bb199bf4c9014e/MZXH</string>
+	</dict>
+	<dict>
+		<key>bannerName</key>
+		<string>祖玛龙香水英国梨与小苍兰</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/content/1533294325809.jpg</string>
+		<key>openType</key>
+		<string>1</string>
+		<key>openUrl</key>
+		<string>HZP_mz_19220/2/eb4f99bb199bf4c9014e/MZXH</string>
+	</dict>
+</array>
+</plist>

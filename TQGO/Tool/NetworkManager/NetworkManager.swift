@@ -13,7 +13,11 @@ typealias successClosure = (APIResultModel) -> (Void)
 typealias failClosure = (Any) -> (Void)
 
 class NetworkManager {
-    
+    static let sharedSessionManager: Alamofire.SessionManager = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 0.5
+        return Alamofire.SessionManager(configuration: configuration)
+    }()
    static  private func commonAPIParameters()->Dictionary<String,String>{
         let userInfo = UserInfo.getCurrentInstance()
         
@@ -86,8 +90,8 @@ class NetworkManager {
             "Accept": "application/json,text/json,text/javascript,text/plain,text/html",
             "Content-type" : "application/json"
         ]
-        
-        Alamofire.request(API_BASE ,
+      
+        sharedSessionManager.request(API_BASE ,
                           method: .post,
                           parameters: paramDict,
                           encoding:JSONEncoding.default,

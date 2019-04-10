@@ -51,24 +51,7 @@ class PromotionVC: UIViewController {
                 self!.promotionModel = respone.data as? PromotionModel
                 self!.tableView.reloadData()
    
-                // 写入文件
-                let home = NSHomeDirectory()
-                // 拼接路径
-                let docPath = home.fileByAppendingPaths(byAppendingPaths: "Documents/BimineData/")
-                if !docPath.fileExist() {
-                   docPath.fileCreateDirectory()
-                }
-                // 3、获取文本文件路径
-                let filePath = docPath.fileByAppendingPaths(byAppendingPaths: "menu.plist")
-                let tempArr = NSMutableArray()
-                tempArr.addObjects(from: (self!.promotionModel?.menus?.toJSON())! as [Any])
-                let rest = tempArr.write(toFile: filePath, atomically: true)
-                DLog(message: "\(rest)================ \(NSHomeDirectory())")
-                
-                let filePathBanner = docPath.fileByAppendingPaths(byAppendingPaths: "homeBanner.plist")
-                let tempArrBanner = NSMutableArray()
-                tempArrBanner.addObjects(from: (self!.promotionModel?.banners?.toJSON())! as [Any])
-                let _ = tempArrBanner.write(toFile: filePathBanner, atomically: true)
+               
             }else{
                self!.readDataFromLocal()
             }
@@ -79,14 +62,16 @@ class PromotionVC: UIViewController {
     
     /// 读取本地数据
     func readDataFromLocal(){
-        let home = NSHomeDirectory() + "/Documents/BimineData/menu.plist"
-        let menuArr = NSArray(contentsOfFile: home)
+        
+      
+        let home = Bundle.main.path(forResource: "menu", ofType: "plist")
+        let menuArr = NSArray(contentsOfFile: home!)
         let tempArr  = JSONDeserializer<MenuModel>.deserializeModelArrayFrom(array: menuArr) as! Array<MenuModel>
         let tempModel = PromotionModel()
         tempModel.menus = tempArr
         
-        let homeBanner = NSHomeDirectory() + "/Documents/BimineData/homeBanner.plist"
-        let menuArrBanner = NSArray(contentsOfFile: homeBanner)
+        let homeBanner = Bundle.main.path(forResource: "homeBanner", ofType: "plist")
+        let menuArrBanner = NSArray(contentsOfFile: homeBanner!)
         let tempArrBanner  = JSONDeserializer<SlideShowModel>.deserializeModelArrayFrom(array: menuArrBanner) as! Array<SlideShowModel>
         tempModel.banners = tempArrBanner
         self.promotionModel = tempModel

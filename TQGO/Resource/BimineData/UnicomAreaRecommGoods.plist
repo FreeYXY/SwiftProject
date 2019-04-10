@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>goodsCode</key>
+		<string>HW_Mate10Pro</string>
+		<key>goodsName</key>
+		<string>华为 Mate10 Pro 全网通</string>
+		<key>goodsType</key>
+		<string>3</string>
+		<key>hideStatus</key>
+		<string>1</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/1514193683322.png</string>
+		<key>tag</key>
+		<string>防溅抗水，卓越性能</string>
+	</dict>
+	<dict>
+		<key>goodsCode</key>
+		<string>HW_P20</string>
+		<key>goodsName</key>
+		<string>华为 P20 AI智慧全面屏 全网通4G手机 双卡双待</string>
+		<key>goodsType</key>
+		<string>3</string>
+		<key>hideStatus</key>
+		<string>1</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/1532488849868.jpg</string>
+		<key>tag</key>
+		<string>高颜值，高性能</string>
+	</dict>
+	<dict>
+		<key>goodsCode</key>
+		<string>NXNW_180</string>
+		<key>goodsName</key>
+		<string>“暖心暖胃”</string>
+		<key>goodsType</key>
+		<string>0</string>
+		<key>hideStatus</key>
+		<string>1</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/1530503853959.jpg</string>
+		<key>tag</key>
+		<string>高颜值，超实用</string>
+	</dict>
+	<dict>
+		<key>goodsCode</key>
+		<string>LXWC_80</string>
+		<key>goodsName</key>
+		<string>“两小无猜”</string>
+		<key>goodsType</key>
+		<string>0</string>
+		<key>hideStatus</key>
+		<string>1</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/1530512272780.jpg</string>
+		<key>tag</key>
+		<string>甜美清新，便捷实用</string>
+	</dict>
+</array>
+</plist>

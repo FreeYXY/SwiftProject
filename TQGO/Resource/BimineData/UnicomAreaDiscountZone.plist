@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>goodsCode</key>
+		<string>JXPZ_358</string>
+		<key>goodsName</key>
+		<string>“匠心品质”</string>
+		<key>goodsSell</key>
+		<string>2</string>
+		<key>goodsType</key>
+		<string>0</string>
+		<key>hideStatus</key>
+		<string>1</string>
+		<key>imgUrl</key>
+		<string>http://www.tequango.com/privilegeGo/image/1530849358155.jpg</string>
+		<key>payPrice</key>
+		<string>358</string>
+		<key>price</key>
+		<string>358</string>
+		<key>tag</key>
+		<string>匠心之道，让家更有味道</string>
+	</dict>
+</array>
+</plist>

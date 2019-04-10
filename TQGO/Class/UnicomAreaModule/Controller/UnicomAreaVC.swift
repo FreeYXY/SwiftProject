@@ -58,30 +58,7 @@ class UnicomAreaVC: UIViewController,UITextFieldDelegate,GoodsDetailDelegate{
             if respone.returnCode == KErrorCode.KErrorCode_SUCCESSE.rawValue{
                 weakSelf!.unicomIndexModel = respone.data as? UnicomIndexModel
                 weakSelf!.tableView.reloadData()
-                // 写入文件
-                let home = NSHomeDirectory()
-                // 拼接路径
-                let docPath = home.fileByAppendingPaths(byAppendingPaths: "Documents/BimineData/")
-                if !docPath.fileExist() {
-                    docPath.fileCreateDirectory()
-                }
-                // 3、获取文本文件路径
-                let filePathDiscountZone = docPath.fileByAppendingPaths(byAppendingPaths: "UnicomAreaDiscountZone.plist")
-                let tempArrDiscountZone = NSMutableArray()
-                tempArrDiscountZone .addObjects(from: (self!.unicomIndexModel?.discountZone!.toJSON())! as [Any])
-                let rest = tempArrDiscountZone.write(toFile: filePathDiscountZone, atomically: true)
                 
-                // 3、获取文本文件路径
-                let filePathRecommGoods = docPath.fileByAppendingPaths(byAppendingPaths: "UnicomAreaRecommGoods.plist")
-                let tempArrRecommGoods  = NSMutableArray()
-                tempArrRecommGoods.addObjects(from: (self!.unicomIndexModel?.recommGoods!.toJSON())! as [Any])
-                let restRecommGoods = tempArrRecommGoods.write(toFile: filePathRecommGoods, atomically: true)
-                
-                let filePathBanner = docPath.fileByAppendingPaths(byAppendingPaths: "UnicomBanner.plist")
-                let tempArrBanner  = NSMutableArray()
-                tempArrBanner.addObjects(from: (self!.unicomIndexModel?.banners!.toJSON())! as [Any])
-                let _ = tempArrBanner.write(toFile: filePathBanner, atomically: true)
-                DLog(message: "\(rest)\(restRecommGoods)================ \(NSHomeDirectory())")
             }else{
                 weakSelf!.readDataFromLocal()
             }
@@ -93,19 +70,19 @@ class UnicomAreaVC: UIViewController,UITextFieldDelegate,GoodsDetailDelegate{
     
     /// 读取本地数据
     func readDataFromLocal(){
-        let homeDiscountZone = NSHomeDirectory() + "/Documents/BimineData/UnicomAreaDiscountZone.plist"
-        let menuArrDiscountZone = NSArray(contentsOfFile: homeDiscountZone)
+        let homeDiscountZone = Bundle.main.path(forResource: "UnicomAreaDiscountZone", ofType: "plist")
+        let menuArrDiscountZone = NSArray(contentsOfFile: homeDiscountZone!)
         let tempArrDiscountZone  = JSONDeserializer<GoodsModel>.deserializeModelArrayFrom(array: menuArrDiscountZone) as! Array<GoodsModel>
         let tempModel = UnicomIndexModel()
         tempModel.discountZone = tempArrDiscountZone
     
-        let homeRecommGoods = NSHomeDirectory() + "/Documents/BimineData/UnicomAreaRecommGoods.plist"
-        let menuArrRecommGoods = NSArray(contentsOfFile: homeRecommGoods)
+        let homeRecommGoods = Bundle.main.path(forResource: "UnicomAreaRecommGoods", ofType: "plist")
+        let menuArrRecommGoods = NSArray(contentsOfFile: homeRecommGoods!)
         let tempArrRecommGoods  = JSONDeserializer<GoodsModel>.deserializeModelArrayFrom(array: menuArrRecommGoods) as! Array<GoodsModel>
         tempModel.recommGoods = tempArrRecommGoods
         
-        let homeBanner = NSHomeDirectory() + "/Documents/BimineData/UnicomBanner.plist"
-        let menuArrBanner = NSArray(contentsOfFile: homeBanner)
+        let homeBanner = Bundle.main.path(forResource: "UnicomBanner", ofType: "plist")
+        let menuArrBanner = NSArray(contentsOfFile: homeBanner!)
         let tempArrBanner  = JSONDeserializer<SlideShowModel>.deserializeModelArrayFrom(array: menuArrBanner) as! Array<SlideShowModel>
         tempModel.banners = tempArrBanner
         self.unicomIndexModel = tempModel

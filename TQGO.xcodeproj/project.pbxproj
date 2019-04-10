@@ -15,6 +15,14 @@
 		9A4C48392101E92B00F0CA3D /* NSObject+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4C48382101E92B00F0CA3D /* NSObject+Common.swift */; };
 		9A5507B6225C807900C47238 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5507B5225C807900C47238 /* BaseTableView.swift */; };
 		9A5507B8225DC0A600C47238 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5507B7225DC0A600C47238 /* Notification+Name.swift */; };
+		9A5507C2225DD90000C47238 /* goodsJJYX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507BA225DD90000C47238 /* goodsJJYX.plist */; };
+		9A5507C3225DD90000C47238 /* UnicomBanner.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507BB225DD90000C47238 /* UnicomBanner.plist */; };
+		9A5507C4225DD90000C47238 /* homeBanner.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507BC225DD90000C47238 /* homeBanner.plist */; };
+		9A5507C5225DD90000C47238 /* menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507BD225DD90000C47238 /* menu.plist */; };
+		9A5507C6225DD90000C47238 /* UnicomAreaDiscountZone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507BE225DD90000C47238 /* UnicomAreaDiscountZone.plist */; };
+		9A5507C7225DD90000C47238 /* goodsPJZX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507BF225DD90000C47238 /* goodsPJZX.plist */; };
+		9A5507C8225DD90000C47238 /* UnicomAreaRecommGoods.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507C0225DD90000C47238 /* UnicomAreaRecommGoods.plist */; };
+		9A5507C9225DD90000C47238 /* goodsMZXH.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A5507C1225DD90000C47238 /* goodsMZXH.plist */; };
 		9A5BF12B21A2BCDE0035E9B7 /* HotGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5BF12A21A2BCDE0035E9B7 /* HotGoodsCell.swift */; };
 		9A5BF12D21A3B6490035E9B7 /* HotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5BF12C21A3B6490035E9B7 /* HotCollectionViewCell.swift */; };
 		9A5BF13A21AE81180035E9B7 /* APIResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5BF13921AE81180035E9B7 /* APIResultModel.swift */; };
@@ -91,6 +99,14 @@
 		9A4C483A2105706D00F0CA3D /* TQGO-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TQGO-Bridging-Header.h"; sourceTree = "<group>"; };
 		9A5507B5225C807900C47238 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		9A5507B7225DC0A600C47238 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
+		9A5507BA225DD90000C47238 /* goodsJJYX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = goodsJJYX.plist; sourceTree = "<group>"; };
+		9A5507BB225DD90000C47238 /* UnicomBanner.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UnicomBanner.plist; sourceTree = "<group>"; };
+		9A5507BC225DD90000C47238 /* homeBanner.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = homeBanner.plist; sourceTree = "<group>"; };
+		9A5507BD225DD90000C47238 /* menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menu.plist; sourceTree = "<group>"; };
+		9A5507BE225DD90000C47238 /* UnicomAreaDiscountZone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UnicomAreaDiscountZone.plist; sourceTree = "<group>"; };
+		9A5507BF225DD90000C47238 /* goodsPJZX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = goodsPJZX.plist; sourceTree = "<group>"; };
+		9A5507C0225DD90000C47238 /* UnicomAreaRecommGoods.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UnicomAreaRecommGoods.plist; sourceTree = "<group>"; };
+		9A5507C1225DD90000C47238 /* goodsMZXH.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = goodsMZXH.plist; sourceTree = "<group>"; };
 		9A5BF12A21A2BCDE0035E9B7 /* HotGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotGoodsCell.swift; sourceTree = "<group>"; };
 		9A5BF12C21A3B6490035E9B7 /* HotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A5BF13921AE81180035E9B7 /* APIResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResultModel.swift; sourceTree = "<group>"; };
@@ -192,11 +208,27 @@
 		9A5507B2225C6ED800C47238 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9A5507B9225DD90000C47238 /* BimineData */,
 				9A70491B20F2FD5600982DCB /* Main.storyboard */,
 				9A70492020F2FD5800982DCB /* LaunchScreen.storyboard */,
 				9A70491E20F2FD5800982DCB /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		9A5507B9225DD90000C47238 /* BimineData */ = {
+			isa = PBXGroup;
+			children = (
+				9A5507BA225DD90000C47238 /* goodsJJYX.plist */,
+				9A5507BB225DD90000C47238 /* UnicomBanner.plist */,
+				9A5507BC225DD90000C47238 /* homeBanner.plist */,
+				9A5507BD225DD90000C47238 /* menu.plist */,
+				9A5507BE225DD90000C47238 /* UnicomAreaDiscountZone.plist */,
+				9A5507BF225DD90000C47238 /* goodsPJZX.plist */,
+				9A5507C0225DD90000C47238 /* UnicomAreaRecommGoods.plist */,
+				9A5507C1225DD90000C47238 /* goodsMZXH.plist */,
+			);
+			path = BimineData;
 			sourceTree = "<group>";
 		};
 		9A5BF13721AE7F360035E9B7 /* Model */ = {
@@ -659,9 +691,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A5507C8225DD90000C47238 /* UnicomAreaRecommGoods.plist in Resources */,
+				9A5507C3225DD90000C47238 /* UnicomBanner.plist in Resources */,
+				9A5507C4225DD90000C47238 /* homeBanner.plist in Resources */,
 				9A70492220F2FD5800982DCB /* LaunchScreen.storyboard in Resources */,
 				9A70491F20F2FD5800982DCB /* Assets.xcassets in Resources */,
+				9A5507C7225DD90000C47238 /* goodsPJZX.plist in Resources */,
+				9A5507C2225DD90000C47238 /* goodsJJYX.plist in Resources */,
+				9A5507C5225DD90000C47238 /* menu.plist in Resources */,
+				9A5507C9225DD90000C47238 /* goodsMZXH.plist in Resources */,
 				9A70491D20F2FD5600982DCB /* Main.storyboard in Resources */,
+				9A5507C6225DD90000C47238 /* UnicomAreaDiscountZone.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
