@@ -2,7 +2,8 @@
 > swift项目实战
 
 #支持#
-**iOS12.2  swift5** 
+
+**iOS12.2 、swift5** 
 
 >[简书](https://www.jianshu.com/p/ac7e9959646f)
 
