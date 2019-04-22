@@ -53,7 +53,8 @@ class UnicomAreaVC: UIViewController,UITextFieldDelegate,GoodsDetailDelegate{
         // 58650173129475008436
         weak var weakSelf = self
 //        测试64701103843409000591  正式01645200948672000591
-        NetworkManagerUnicom.loadData(api: .queryUnicomZoneIndex(userNo:"01645200948672000591" , area: "110000"), completionClosure: {[weak self] (respone) -> (Void) in
+        let dict = ["userNo":"01645200948672000591" , "area": "110000"]
+        NetworkManager.loadData(api: APIInterfaceUnicom.queryUnicomZoneIndex(params: dict), completionClosure: {[weak self] (respone) -> (Void) in
             weakSelf!.tableView.mj_header.endRefreshing()
             if respone.returnCode == KErrorCode.KErrorCode_SUCCESSE.rawValue{
                 weakSelf!.unicomIndexModel = respone.data as? UnicomIndexModel

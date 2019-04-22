@@ -20,7 +20,7 @@ class PromotionVC: UIViewController {
     var canScroll = true
     
     lazy var tableView:BaseTableView = {
-        let tableView = BaseTableView(frame: view.bounds, style: UITableViewStyle.plain)
+        let tableView = BaseTableView(frame: view.bounds, style: UITableView.Style.plain)
         tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,7 +46,12 @@ class PromotionVC: UIViewController {
         })
 
         //        64701103843409000591测试    01645200948672000591 正式
-        NetworkManagerPromotion.loadData(api: .queryPromoIndex(userNo: "01645200948672000591", area:"110000", taskId: "", menuCode: ""), completionClosure: {[weak self] (respone) -> (Void) in
+        let params = ["userNo": "01645200948672000591",
+                      "area":"110000",
+                      "taskId": "",
+                      "menuCode": ""]
+        
+        NetworkManager.loadData(api: APIInterfacePromotion.queryPromoIndex(params:params), completionClosure: { [weak self] (respone) -> (Void) in
             if respone.returnCode == KErrorCode.KErrorCode_SUCCESSE.rawValue{
                 self!.promotionModel = respone.data as? PromotionModel
                 self!.tableView.reloadData()

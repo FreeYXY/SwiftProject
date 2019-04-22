@@ -21,7 +21,10 @@ class PromotionSubCell: UICollectionViewCell {
  
     var model:GoodsModel?{
         didSet{
-            icon.kf.setImage(with: URL(string: (model?.imgUrl ?? "")), placeholder: UIImage.init(named: "icon_goods_default"), options: [KingfisherOptionsInfoItem.cacheOriginalImage], progressBlock: nil, completionHandler: nil)
+            
+            icon.kf.setImage(with: URL(string: (model?.imgUrl ?? "")), placeholder: UIImage.init(named: "icon_goods_default"), options: nil, progressBlock: nil) { (result) in
+                
+            }
             salesCountLabel.text = "月销" + (model?.goodsSell ?? "") + "件"
             goodsNameLabel.text = model?.goodsName ?? ""
             var tagArr = [String]()
@@ -41,8 +44,8 @@ class PromotionSubCell: UICollectionViewCell {
             }
             
             let attStr =  NSMutableAttributedString(string: ("￥" + (model?.payPrice ?? "")))
-            attStr.addAttributes([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 10)], range:  NSRange(location: 0, length: 1))
-             attStr.addAttributes([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)], range:  NSMakeRange(1, attStr.length-1))
+            attStr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 10)], range:  NSRange(location: 0, length: 1))
+            attStr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], range:  NSMakeRange(1, attStr.length-1))
 
             specialPriceLabel.attributedText = attStr;
             let newPrice =  NSMutableAttributedString(string: ("￥" + (model?.payPrice ?? "")))

@@ -54,7 +54,9 @@ class HotCollectionViewCell: UICollectionViewCell {
     }
     
     func setModel(goodsModel:GoodsModel) -> Void {
-        goodsImg?.kf.setImage(with: URL(string: goodsModel.imgUrl!), placeholder: UIImage(named: "icon_goods_default"), options: nil, progressBlock: nil, completionHandler: nil)
+        goodsImg?.kf.setImage(with: URL(string: goodsModel.imgUrl!), placeholder: UIImage(named: "icon_goods_default"), options: nil, progressBlock: nil, completionHandler: { (result) in
+            
+        })
         goodsNameLabel?.text = goodsModel.goodsName
         goodsDescLabel?.text = goodsModel.tag
     }

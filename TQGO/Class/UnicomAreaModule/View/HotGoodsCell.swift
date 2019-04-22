@@ -18,7 +18,7 @@ class HotGoodsCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: kScreenWidth/2, height: 80)
 //        layout.headerReferenceSize = CGSize(width: kScreenWidth, height: 48+8)
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 80*2), collectionViewLayout: layout)
@@ -28,7 +28,7 @@ class HotGoodsCell: UITableViewCell {
         return collectionView
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style , reuseIdentifier: reuseIdentifier)
         self.setupView()
     }

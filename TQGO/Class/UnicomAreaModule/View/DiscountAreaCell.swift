@@ -15,7 +15,7 @@ class DiscountAreaCell: UITableViewCell {
     var specialPriceLabel : UILabel?
     var counLabel : UILabel?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
@@ -86,7 +86,9 @@ class DiscountAreaCell: UITableViewCell {
     }
     
     func setModel(goodsModel:GoodsModel) -> Void {
-        iconImgV?.kf.setImage(with: URL(string: goodsModel.imgUrl!), placeholder: UIImage(named: "icon_goods_default"), options: nil, progressBlock: nil, completionHandler: nil)
+        iconImgV?.kf.setImage(with: URL(string: goodsModel.imgUrl!), placeholder:  UIImage(named: "icon_goods_default"), options: nil, progressBlock: nil, completionHandler: { (result) in
+            
+        })
         goodsNameLabel?.text = goodsModel.goodsName
         goodsDescLabel?.text = goodsModel.tag
         specialPriceLabel?.text = goodsModel.payPrice

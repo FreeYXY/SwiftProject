@@ -56,7 +56,7 @@ class YXYPageContentView: UIView {
         self.parentVC = parentVC
         self.addSubview(self.collectionView)
         let _ = subVCArr.map { (vc) -> Void in
-            self.parentVC.addChildViewController(vc)
+            self.parentVC.addChild(vc)
         }
     }
 }

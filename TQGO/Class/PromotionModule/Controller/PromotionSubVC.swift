@@ -31,7 +31,7 @@ class PromotionSubVC: UIViewController {
         layout.itemSize = CGSize(width: (kScreenWidth-15*3)/2.0, height: height)
         layout.minimumInteritemSpacing = 15
         layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15);
 
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: view.width, height: kScreenHeight - kSafeAreaTopHeight - kSafeAreaBottomHeight), collectionViewLayout: layout)
         collectionView.backgroundColor = .white
@@ -48,7 +48,11 @@ class PromotionSubVC: UIViewController {
         view.backgroundColor = .white
         view.addSubview(collectionView)
         //        正式 01645200948672000591 测试64701103843409000591
-        NetworkManagerPromotion.loadData(api: .queryPromoIndex(userNo:"01645200948672000591" , area: "110000",taskId:taskId ?? "a3e17811155f699c451b",menuCode:menuCode!), completionClosure: {[weak self] (respone) -> (Void) in
+        let params = ["userNo": "01645200948672000591",
+                      "area":"110000",
+                      "taskId":taskId ?? "a3e17811155f699c451b",
+                      "menuCode": menuCode!]
+        NetworkManager.loadData(api: APIInterfacePromotion.queryPromoIndex(params:params ), completionClosure: { [weak self] (respone) -> (Void) in
             
             if respone.returnCode == KErrorCode.KErrorCode_SUCCESSE.rawValue{
                 self!.promotionModel = respone.data as? PromotionModel

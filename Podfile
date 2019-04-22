@@ -1,17 +1,18 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'TQGO' do
   use_frameworks!
 
-pod 'RealmSwift', '~> 3.7.6'
+pod 'RealmSwift', '~> 3.14.1'
 pod 'SwiftyJSON'
-pod 'Kingfisher', '~> 4.8.1'
-pod 'Alamofire', '~> 4.7.0'
-pod 'SnapKit', '~> 4.0.1'
+pod 'Kingfisher', '~> 5.3.1'
+pod 'Alamofire', '~> 5.0.0-beta.5'
+pod 'SnapKit', '~> 4.2.0'
 pod 'MJRefresh'
-pod 'HandyJSON', '~> 4.2.1'
-pod 'RxSwift',    '~> 4.4.2'
-pod 'RxCocoa',    '~> 4.4.2'
+pod 'HandyJSON', '~> 5.0.0-beta.1'
+pod 'RxSwift', '~> 4.5.0'
+pod 'RxCocoa', '~> 4.5.0'
+
 
 #pod 'ObjectMapper'
 #pod 'CryptoSwift'加密相关的帮助函数实现

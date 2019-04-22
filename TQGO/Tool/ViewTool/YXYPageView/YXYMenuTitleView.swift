@@ -148,12 +148,12 @@ class YXYMenuTitleView: UIView {
         var totalMenuWidth:CGFloat = 0
         for (_, val) in titleArr.enumerated() {
             let menuWidth = val.width(fontSize: menuFont) + menuMargin
-            let menu = UIButton(type: UIButtonType.custom)
+            let menu = UIButton(type: UIButton.ButtonType.custom)
             menu.frame = CGRect(x: totalMenuWidth, y: 0.0, width: menuWidth, height: self.height)
-            menu.setTitle(val, for: UIControlState.normal)
+            menu.setTitle(val, for: UIControl.State.normal)
             menu.setTitleColor(.black, for: .normal)
             menu.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            menu.addTarget(self, action: #selector(menuAction), for: UIControlEvents.touchUpInside)
+            menu.addTarget(self, action: #selector(menuAction), for: UIControl.Event.touchUpInside)
             menuScrollView.addSubview(menu)
             menuArr.append(menu)
             totalMenuWidth = totalMenuWidth + menuWidth

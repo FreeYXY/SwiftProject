@@ -213,7 +213,9 @@ extension YXYCycleScrollView:UICollectionViewDataSource,UICollectionViewDelegate
                 defaultCell.imageView.contentMode = imageContentMode
             }
             if (self.datas?.count)! < 1{
-                defaultCell.imageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+             
+                
+//                defaultCell.imageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
                 return defaultCell
             }
             
@@ -276,7 +278,7 @@ extension YXYCycleScrollView:UIScrollViewDelegate{
         self.stopTimer()
         if self.autoScrollDelay >= 0.5 {
             self.timer = Timer.scheduledTimer(timeInterval: self.autoScrollDelay, target: self, selector: #selector(timerHandle), userInfo: nil, repeats: true)
-            RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.commonModes)
+            RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.common)
         }
     }
     

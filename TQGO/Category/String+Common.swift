@@ -38,7 +38,7 @@ extension String{
     /// - Parameter fontSize: 字体大小
     /// - Returns: 字符串宽度
     func width(fontSize:CGFloat) -> CGFloat {
-        return self.size(withAttributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: fontSize)]).width
+        return self.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize)]).width
     }
 
     /// 判断文件是否存在

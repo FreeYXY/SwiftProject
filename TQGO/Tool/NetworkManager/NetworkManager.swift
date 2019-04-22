@@ -12,13 +12,18 @@ import Alamofire
 typealias successClosure = (APIResultModel) -> (Void)
 typealias failClosure = (Any) -> (Void)
 
+protocol APIInterfaceProtocol {
+    var path:String {get}
+    var parameters: [String: String]? { get }
+}
+
 class NetworkManager {
-    static let sharedSessionManager: Alamofire.SessionManager = {
+    private static let sharedSessionManager: Session = {
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 0.5
-        return Alamofire.SessionManager(configuration: configuration)
+        configuration.timeoutIntervalForRequest = 0.2
+        return Session(configuration: configuration)
     }()
-   static  private func commonAPIParameters()->Dictionary<String,String>{
+    private static func commonAPIParameters()->Dictionary<String,String>{
         let userInfo = UserInfo.getCurrentInstance()
         
         var parameters = [String : String]()
@@ -39,7 +44,7 @@ class NetworkManager {
     }
     
     //  生成随机数 yyyyMMddHHmmss+6位数
-    static private func flowNumber()-> String {
+    private static func flowNumber()-> String {
         let timeSpan = String.nowTimeWithFormat(format:"yyyyMMddHHmmss")
         let randomNum = String(format: "%d", 100000 + (arc4random() % 100001))
         let flowNumber = String(format: "%@%@", timeSpan,randomNum)
@@ -47,7 +52,7 @@ class NetworkManager {
     }
     
     // 生成签名参数
-    static private  func SignParameters(params:[String:AnyObject])->Dictionary<String,AnyObject>{//Dictionary<String, AnyObject>
+    private static func SignParameters(params:[String:AnyObject])->Dictionary<String,AnyObject>{//Dictionary<String, AnyObject>
         //参数排序
         var parameters = params
         let keyArray = params.keys.sorted()
@@ -73,7 +78,7 @@ class NetworkManager {
         return parameters
     }
     
-    static func postRequest(interface:String,params:Dictionary<String,String>,completion:@escaping successClosure,failed:@escaping failClosure){
+    private static func postRequest(interface:String,params:Dictionary<String,String>,completion:@escaping successClosure,failed:@escaping failClosure){
         // 构建全部参数
         var  commonParas = commonAPIParameters() as [String : AnyObject]
         commonParas["operation"] = interface  as AnyObject
@@ -90,23 +95,23 @@ class NetworkManager {
             "Accept": "application/json,text/json,text/javascript,text/plain,text/html",
             "Content-type" : "application/json"
         ]
-      
+        
         sharedSessionManager.request(API_BASE ,
-                          method: .post,
-                          parameters: paramDict,
-                          encoding:JSONEncoding.default,
-                          headers:headers).responseJSON{ (response) in
-                            switch response.result {
-                            case .success(let value):
-                                DLog(message:"接口路径：||-------------" + interface + "-------------||")
-                                DLog(message:JSON(value))
-                                completion(APIResultModel.deserialize(from:value as? Dictionary) ?? APIResultModel())
-                                return
-                            case .failure(let error):
-                                DLog(message: String(describing: error))
-                                failed(error)
-                                return
-                            }
+                                     method: .post,
+                                     parameters: paramDict,
+                                     encoding:JSONEncoding.default,
+                                     headers:headers).responseJSON{ (response) in
+                                        switch response.result {
+                                        case .success(let value):
+                                            DLog(message:"接口路径：||-------------" + interface + "-------------||")
+                                            DLog(message:JSON(value))
+                                            completion(APIResultModel.deserialize(from:value as? Dictionary) ?? APIResultModel())
+                                            return
+                                        case .failure(let error):
+                                            DLog(message: String(describing: error))
+                                            failed(error)
+                                            return
+                                        }
         }
         
         //    Alamofire.request(API_BASE ,
@@ -134,4 +139,17 @@ class NetworkManager {
         //    }
     }
     
+    static func loadData(api:APIInterfaceProtocol,completionClosure: @escaping successClosure,failClosure:@escaping failClosure) -> Void {
+        var paramsDict = [String:String]()
+        _ = api.parameters?.map({ (key, value)  in
+            if !value.isEmpty {
+                paramsDict.updateValue(value , forKey: key)
+            }
+        })
+        NetworkManager.postRequest(interface:api.path , params: paramsDict, completion: { (resopne) -> (Void) in
+            completionClosure(resopne)
+        }) { (fail) -> (Void) in
+            failClosure(fail)
+        }
+    }
 }
