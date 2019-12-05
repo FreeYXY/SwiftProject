@@ -42,32 +42,31 @@ class PromotionVC: UIViewController {
         tableView.backgroundColor = .white
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             [unowned self] in
-            self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_header?.endRefreshing()
         })
-
-        //        64701103843409000591测试    01645200948672000591 正式
-        let params = ["userNo": "01645200948672000591",
-                      "area":"110000",
-                      "taskId": "",
-                      "menuCode": ""]
+        var params = ["area":"110000",
+                     "taskId": "",
+                     "menuCode": ""]
+        if let userNo = UserInfo.instance?.userNo {
+            params.updateValue(userNo, forKey: kUserNo)
+        }
         
         NetworkManager.loadData(api: APIInterfacePromotion.queryPromoIndex(params:params), completionClosure: { [weak self] (respone) -> (Void) in
             if respone.returnCode == KErrorCode.KErrorCode_SUCCESSE.rawValue{
-                self!.promotionModel = respone.data as? PromotionModel
-                self!.tableView.reloadData()
-   
-               
+                if let model = PromotionModel.deserialize(from: respone.toJSONString(), designatedPath: "data") {
+                    self?.promotionModel = model
+                    self?.tableView.reloadData()
+                }
             }else{
-               self!.readDataFromLocal()
+               self?.readDataFromLocal()
             }
         }) {[weak self] (fail) -> (Void) in
-            self!.readDataFromLocal()
+             self?.readDataFromLocal()
         }
     }
     
     /// 读取本地数据
     func readDataFromLocal(){
-        
       
         let home = Bundle.main.path(forResource: "menu", ofType: "plist")
         let menuArr = NSArray(contentsOfFile: home!)

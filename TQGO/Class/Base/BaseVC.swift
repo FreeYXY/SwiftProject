@@ -21,6 +21,19 @@ class BaseVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if title == "我的" || title == "联通专区" {
+            navigationController?.navigationBar.isHidden = true
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if title == "我的" || title == "联通专区" {
+            navigationController?.navigationBar.isHidden = false
+        }
+    }
 
     /*
     // MARK: - Navigation

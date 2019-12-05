@@ -9,7 +9,7 @@
 import UIKit
 
 class ADCell: UITableViewCell {
-    var cycleScrollView:YXYCycleScrollView?
+    var cycleScrollView:YXYBanner?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -17,7 +17,7 @@ class ADCell: UITableViewCell {
     }
     
     func setupView() -> Void {
-        cycleScrollView = YXYCycleScrollView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth*150/375))
+        cycleScrollView = YXYBanner(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth*150/375))
         contentView.addSubview(cycleScrollView!)
         cycleScrollView?.placeholderImage = UIImage(named: "icon_home_banner_default")
         cycleScrollView!.snp.makeConstraints { (make) in
@@ -38,7 +38,7 @@ class ADCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-//    
+//
     func setSlideArr(banner:[SlideShowModel]?) -> Void {
         var urlsArr : [String] = []
         if banner?.count != 0{

@@ -22,21 +22,21 @@ let API_BASE = "http://www.YXY.com"  // 正式
 #if DEBUG
 
 
-let API_UAPKEY =  "1234567890"//测试 uapkey
-let API_SECRET_KEY = "key=0987654321" //测试环境  商户签名秘钥- key
+let API_UAPKEY =  "YXY"//测试 uapkey
+let API_SECRET_KEY = "key=YXY" //测试环境  商户签名秘钥- key
 
 let KDebugMode = true // debug 模式下，开启调试模式
 let KBuglyChannel = "Debug"
 let kDEBUGTYPE = true // 调试环境
 let kJPUSH_ISProduction = false // 极光推送环境变量
 let KBaiduMobStatLog_switch = true // 百度统计  测试环境开启日志输出 上线打开为yes  测试关闭为NO
-let kFUPayKey  = "123456qwertyuiop"
+let kFUPayKey  = "YXY"
 
 #else
 
 
-let API_UAPKEY  = "asdfghjkl" //正式 uapkey
-let API_SECRET_KEY  = "key=zxcvbnm" //正式环境  商户签名秘钥- key
+let API_UAPKEY  = "YXY" //正式 uapkey
+let API_SECRET_KEY  = "key=YXY" //正式环境  商户签名秘钥- key
 
 #endif
 
@@ -47,15 +47,15 @@ let kUserNo = "kUserNo"
 
 // 接口通用参数配置
 let kPLATFORM_CODE = "YXY" // 平台编码
-let kIP = "192.127.167.66" // 真实来源
+let kIP = "YXY" // 真实来源
 let kAPI_ImageServer = "http://YXY/static"
-let KBuglyAppId = "345678"  // BuglyAppId
-let KWXAppId = "wertyu"// WXAppId
-let KBaiduMobStatAppKey = "12345"
-let KJPUSHAppKey = "wertyufghjk"
+let KBuglyAppId = "YXY"  // BuglyAppId
+let KWXAppId = "YXY"// WXAppId
+let KBaiduMobStatAppKey = "YXY"
+let KJPUSHAppKey = "YXY"
 let KAppScheme  = "YXY"
 let KStagesPrice = "50"
-let kAES128KEY = "ertyuio" // AES128KEY 与向量kInitVector值相同
+let kAES128KEY = "YXY" // AES128KEY 与向量kInitVector值相同
 
 // 百度统计时间ID
 enum KBaiduMobStatID:String{

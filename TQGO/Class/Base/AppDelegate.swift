@@ -15,14 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        // 配置Realm
+        RealmManager.config()
         window = UIWindow(frame:UIScreen.main.bounds)
         window?.rootViewController = ProjectTabBarVC();
         window?.makeKeyAndVisible()
         
         let realm = try! Realm()
-        print(realm.configuration.fileURL!)
-        
+        // 配置Toast显示位置
+        ToastManager.shared.position = .center
         return true
     }
 

@@ -8,29 +8,60 @@
 
 import UIKit
 
-class PersonalCenterVC: UIViewController {
+class PersonalCenterVC: BaseVC {
 
+    lazy var tableView:UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MyHeaderCell.self, forCellReuseIdentifier:"k")
+        tableView.separatorStyle = .none
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+            make.top.equalToSuperview().offset(-kNabBarHeight)
+        }
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "我的"
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        tableView.backgroundColor = .white
+        
+       
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+}
+
+
+extension PersonalCenterVC:UITableViewDataSource,UITableViewDelegate{
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
+        return  kSafeAreaBottomHeight > 0 ? 150+24.0 :150.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        return tableView.dequeueReusableCell(withIdentifier: "k", for: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

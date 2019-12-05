@@ -12,19 +12,28 @@ import Alamofire
 typealias successClosure = (APIResultModel) -> (Void)
 typealias failClosure = (Any) -> (Void)
 
+public enum APIError {
+    case apiError_done  // 请求成功
+    case apiError_netError(String) // 请求失败  网络 原因
+    case apiError_serverMessage(String)  // 请求失败  服务器原因
+}
+
 protocol APIInterfaceProtocol {
     var path:String {get}
     var parameters: [String: String]? { get }
+  
 }
 
 class NetworkManager {
-    private static let sharedSessionManager: Session = {
+   
+    private static var sharedSessionManager: Session = {
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 0.2
+        configuration.timeoutIntervalForRequest = 0.2//请求超时时间
         return Session(configuration: configuration)
     }()
+
     private static func commonAPIParameters()->Dictionary<String,String>{
-        let userInfo = UserInfo.getCurrentInstance()
+        let userInfo = UserInfo.instance
         
         var parameters = [String : String]()
         parameters.updateValue(API_UAPKEY, forKey: "uapkey")
@@ -95,23 +104,24 @@ class NetworkManager {
             "Accept": "application/json,text/json,text/javascript,text/plain,text/html",
             "Content-type" : "application/json"
         ]
-        
+      
         sharedSessionManager.request(API_BASE ,
-                                     method: .post,
-                                     parameters: paramDict,
-                                     encoding:JSONEncoding.default,
-                                     headers:headers).responseJSON{ (response) in
-                                        switch response.result {
-                                        case .success(let value):
-                                            DLog(message:"接口路径：||-------------" + interface + "-------------||")
-                                            DLog(message:JSON(value))
-                                            completion(APIResultModel.deserialize(from:value as? Dictionary) ?? APIResultModel())
-                                            return
-                                        case .failure(let error):
-                                            DLog(message: String(describing: error))
-                                            failed(error)
-                                            return
-                                        }
+                          method: .post,
+                          parameters: paramDict,
+                          encoding:JSONEncoding.default,
+                          headers:headers).responseJSON{ (response) in
+                            switch response.result {
+                            case .success(let value):
+                                DLog(message:"接口路径：||-------------" + interface + "-------------||")
+                                DLog(message:JSON(value))
+                                completion(APIResultModel.deserialize(from:value as? Dictionary) ?? APIResultModel())
+                                return
+                            case .failure(let error):
+                                DLog(message: String(describing: error))
+                                failed(error)
+                                
+                                return
+                            }
         }
         
         //    Alamofire.request(API_BASE ,

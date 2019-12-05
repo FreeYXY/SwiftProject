@@ -1,12 +1,13 @@
 //
-//  Notifaction+Name.swift
+//  Notification.Name+YXYCommon.swift
 //  TQGO
 //
-//  Created by YXY on 2019/4/10.
+//  Created by YXY on 2019/11/15.
 //  Copyright © 2019 Techwis. All rights reserved.
 //
 
 import Foundation
+
 
 extension Notification.Name{
     

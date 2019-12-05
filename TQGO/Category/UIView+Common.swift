@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+//MARK: Frame
 extension UIView {
     public var x: CGFloat{
         get{
@@ -39,7 +39,7 @@ extension UIView {
         }
         set{
             var r = self.frame
-            r.origin.x = newValue - frame.size.width
+            r.origin.x = newValue - frame.width
             self.frame = r
         }
     }
@@ -50,7 +50,7 @@ extension UIView {
         }
         set{
             var r = self.frame
-            r.origin.y = newValue - frame.size.height
+            r.origin.y = newValue - frame.height
             self.frame = r
         }
     }
@@ -75,7 +75,7 @@ extension UIView {
     
     public var width: CGFloat{
         get{
-            return self.frame.size.width
+            return self.frame.width
         }
         set{
             var r = self.frame
@@ -85,7 +85,7 @@ extension UIView {
     }
     public var height: CGFloat{
         get{
-            return self.frame.size.height
+            return self.frame.height
         }
         set{
             var r = self.frame
@@ -115,4 +115,54 @@ extension UIView {
         }
     }
     
+}
+
+extension UIView{
+    /// 获取视图根控制器
+    func viewController() -> UIViewController? {
+        var next: UIResponder?  = self.next
+        
+        repeat {
+            if (next?.isKind(of: UIViewController.self) == true) {
+                return next as? UIViewController
+            }
+            next = next?.next
+        }while (next != nil)
+        return nil
+    }
+//    extension UIView {
+//        //返回该view所在VC
+//        func firstViewController() -> UIViewController? {
+//            for view in sequence(first: self.superview, next: { $0?.superview }) {
+//                if let responder = view?.next {
+//                    if responder.isKind(of: UIViewController.self){
+//                        return responder as? UIViewController
+//                    }
+//                }
+//            }
+//            return nil
+//        }
+//    }
+    
+    /// 截图
+    func snapshotImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let snap : UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return snap!
+    }
+    
+    
+    /// 可设置指定位置圆角
+    /// - Parameter corners: 圆角位置
+    /// - Parameter radius: 角度
+    func cornerRadius(corners: UIRectCorner = .allCorners , radius: CGFloat) {
+        layoutIfNeeded()
+        let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = bounds
+        maskLayer.path = maskPath.cgPath
+        layer.mask = maskLayer
+    }
 }

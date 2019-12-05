@@ -1,5 +1,5 @@
 //
-//  YXYCycleScrollView.swift
+//  YXYBanner.swift
 //  TQGO
 //
 //  Created by YXY on 2018/12/3.
@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import Kingfisher
 
-private let YXYCycleScrollViewDefaultCell_id = "YXYCycleScrollViewDefaultCell_id"
-typealias YXYCycleScrollViewCustomCellBlock = (_ collectionView: UICollectionView, _ indexPath: IndexPath, _ picture: String) -> UICollectionViewCell
+private let YXYBannerViewDefaultCell_id = "YXYBannerViewDefaultCell_id"
+typealias YXYBannerViewCustomCellBlock = (_ collectionView: UICollectionView, _ indexPath: IndexPath, _ picture: String) -> UICollectionViewCell
 
 // 滚动方向
-enum YXYCycleScrollViewRollingDirection : Int {
+enum YXYBannerScrollDirection : Int {
     case top
     case left
     case bottom
     case right
 }
 
-class YXYCycleScrollView: UIView {
+class YXYBanner: UIView {
     /** 网络图片 url string 数组 */
     var imageURLStringsGroup:[String] = []{
         didSet{
@@ -34,7 +35,6 @@ class YXYCycleScrollView: UIView {
         }
     }
     // 默认图
-  
     var placeholderImage: UIImage?
     
     /** 每张图片对应要显示的文字数组 */
@@ -53,7 +53,7 @@ class YXYCycleScrollView: UIView {
     var autoScrollDelay: TimeInterval = 2
     
     // 滚动方向
-    var direction: YXYCycleScrollViewRollingDirection = .left {
+    var direction: YXYBannerScrollDirection = .left {
         willSet {
 //            switch newValue {
 //            case .left, .top:
@@ -77,7 +77,7 @@ class YXYCycleScrollView: UIView {
     var imageContentMode: UIView.ContentMode?
     
     /// 自定义cell回调
-    var customCellBlock: YXYCycleScrollViewCustomCellBlock?
+    var customCellBlock: YXYBannerViewCustomCellBlock?
     
     var timer: Timer?
     
@@ -148,7 +148,7 @@ class YXYCycleScrollView: UIView {
     }()
     
     /// 如果需要自定义 AnyClass cell 需调用下面方法
-    open func register(_ cellClasss: [Swift.AnyClass?], identifiers: [String], customCellBlock: @escaping YXYCycleScrollViewCustomCellBlock) {
+    open func register(_ cellClasss: [Swift.AnyClass?], identifiers: [String], customCellBlock: @escaping YXYBannerViewCustomCellBlock) {
         self.customCellBlock = customCellBlock
         for (index, identifier) in identifiers.enumerated() {
             self.collectionView.register(cellClasss[index], forCellWithReuseIdentifier: identifier)
@@ -173,10 +173,10 @@ class YXYCycleScrollView: UIView {
     }()
     
     lazy var collectionView: UICollectionView = {
-        let collectionView: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height), collectionViewLayout: layout)
+        let collectionView: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.register(YXYCycleScrollViewDefaultCell.self, forCellWithReuseIdentifier: YXYCycleScrollViewDefaultCell_id)
+        collectionView.register(YXYCycleScrollViewDefaultCell.self, forCellWithReuseIdentifier: YXYBannerViewDefaultCell_id)
         collectionView.backgroundColor = UIColor.clear
         collectionView.isPagingEnabled = true
         collectionView.bounces = false
@@ -199,7 +199,7 @@ class YXYCycleScrollView: UIView {
     }
 }
 
-extension YXYCycleScrollView:UICollectionViewDataSource,UICollectionViewDelegate{
+extension YXYBanner:UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -208,14 +208,15 @@ extension YXYCycleScrollView:UICollectionViewDataSource,UICollectionViewDelegate
         if let customCellBlock = self.customCellBlock  {
             return customCellBlock(collectionView, indexPath, self.datas![indexPath.item])
         }else{
-            let defaultCell  = collectionView.dequeueReusableCell(withReuseIdentifier: YXYCycleScrollViewDefaultCell_id, for: indexPath) as! YXYCycleScrollViewDefaultCell
+            let defaultCell  = collectionView.dequeueReusableCell(withReuseIdentifier: YXYBannerViewDefaultCell_id, for: indexPath) as! YXYCycleScrollViewDefaultCell
             if let imageContentMode = self.imageContentMode {
                 defaultCell.imageView.contentMode = imageContentMode
             }
             if (self.datas?.count)! < 1{
-             
                 
-//                defaultCell.imageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+//                defaultCell.imageView.kf.setImage(with: nil) 
+//                defaultCell.imageView.kf.setImage(with: nil, placeholder: UIImage.init(named: "icon_goods_default"), options: [.processor(DefaultImageProcessor.default)], progressBlock: nil, completionHandler: { result in
+//                })
                 return defaultCell
             }
             
@@ -230,7 +231,7 @@ extension YXYCycleScrollView:UICollectionViewDataSource,UICollectionViewDelegate
 
 }
 
-extension YXYCycleScrollView:UIScrollViewDelegate{
+extension YXYBanner:UIScrollViewDelegate{
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.stopTimer()
     }
@@ -277,7 +278,16 @@ extension YXYCycleScrollView:UIScrollViewDelegate{
     func startTimer() {
         self.stopTimer()
         if self.autoScrollDelay >= 0.5 {
-            self.timer = Timer.scheduledTimer(timeInterval: self.autoScrollDelay, target: self, selector: #selector(timerHandle), userInfo: nil, repeats: true)
+            self.timer =  Timer.scheduledTimer(withTimeInterval: self.autoScrollDelay, repeats: true) { (timer) in
+                var item: Int = 0
+                switch self.direction {
+                case .left, .bottom:
+                    item = 2
+                case .top, .right:
+                    item = 0
+                }
+                self.collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: self.scrollPosition, animated: true)
+            }
             RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.common)
         }
     }
@@ -288,17 +298,6 @@ extension YXYCycleScrollView:UIScrollViewDelegate{
             timer?.invalidate()
             timer = nil
         }
-    }
-    
-    @objc func timerHandle() {
-        var item: Int = 0
-        switch self.direction {
-        case .left, .bottom:
-            item = 2
-        case .top, .right:
-            item = 0
-        }
-        self.collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: self.scrollPosition, animated: true)
     }
 }
 

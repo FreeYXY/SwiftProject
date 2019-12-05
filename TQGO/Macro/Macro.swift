@@ -8,25 +8,43 @@
 
 import Foundation
 import SnapKit
+@_exported import RxSwift
+@_exported import RxCocoa
+@_exported import RealmSwift
 @_exported import HandyJSON
 @_exported import SwiftyJSON
 @_exported import Kingfisher
+@_exported import Toast_Swift
 
-let kScreenHeight = UIScreen.main.bounds.size.height
-let kScreenWidth = UIScreen.main.bounds.size.width
+
+let kScreenHeight = UIScreen.main.bounds.height
+let kScreenWidth = UIScreen.main.bounds.width
 let kSafeAreaBottomHeight:CGFloat  = (((kScreenHeight == 812.0 ) || (kScreenHeight == 896.0)) ? 34 : 0)
 let kSafeAreaTopHeight:CGFloat = (((kScreenHeight == 812.0 ) || (kScreenHeight == 896.0)) ? 88 : 64)
 let kSystemVersion = (UIDevice.current.systemVersion as NSString).floatValue
-let kStatusBarHeight = UIApplication.shared.statusBarFrame.size.height
+let kStatusBarHeight = UIApplication.shared.statusBarFrame.height
 let kMainScreenScale = UIScreen.main.scale
-let kTabbarHeight = 49
-let kNabBarHeight = 44
 let kNavgationHeight = (CGFloat(kStatusBarHeight) + CGFloat(kNabBarHeight))
 let kUserDefaults = UserDefaults.standard
 let kNotife = NotificationCenter.default
 let kAppVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
 let kUUID =  UIDevice.current.identifierForVendor?.uuidString.replacingOccurrences(of: "-", with: "")
 let kDate_Location = "zh_CN"
+let kTabbarHeight = 49
+let kNabBarHeight = 44
+let kLineHeight = 0.5
+let kSectionHeight:CGFloat = 48
+let kMarginHeight = 8
+let kLimitPhone = 11
+let kLimitPassword = 16
+let kLimitSecurityCode = 4
+
+//获取命名空间，在info.plist文件里就是Executable file
+let nameSpace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
+//拼接成固定格式
+func YXYClassFromString(name:String) -> AnyClass{
+    return NSClassFromString(nameSpace + "." + name)!
+}
 
 // 文件夹路径
 struct kDirectoryPath {
@@ -40,10 +58,19 @@ struct kDirectoryPath {
 func DLog<T>(message : T,file : String = #file,function:String = #function, lineNumber : Int = #line) {
     #if DEBUG
     let fileName = (file as NSString).lastPathComponent
-    print("自定义日志输出：[\(fileName) | \(function) | lineNum:\(lineNumber)] \n \(message)")
+    let functionStr = function.split(separator: "(").first
+    print("\n**************自定义日志输出：\(fileName):\(functionStr ?? "")():[\(lineNumber)]************** \n\(message) \n**************************************************")
     #endif
 }
 
+func kImage(name:String) -> UIImage?{
+    return UIImage(named: name)
+}
+
+func kFont(size:CGFloat) -> UIFont{
+    return UIFont.systemFont(ofSize: size)
+}
+   
 func kRGBCOLOR(r:CGFloat,g:CGFloat,b:CGFloat) -> UIColor{
    return UIColor(red:  r/255.0, green: g/255.0, blue:  b/255.0, alpha: 1)
 }
