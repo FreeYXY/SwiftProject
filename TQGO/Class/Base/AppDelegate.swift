@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = ProjectTabBarVC();
         window?.makeKeyAndVisible()
         
-        let realm = try! Realm()
         // 配置Toast显示位置
         ToastManager.shared.position = .center
         return true
