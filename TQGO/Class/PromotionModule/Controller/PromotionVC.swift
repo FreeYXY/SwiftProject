@@ -44,9 +44,13 @@ class PromotionVC: UIViewController {
             [unowned self] in
             self.tableView.mj_header?.endRefreshing()
         })
+        loadData()
+    }
+    
+    func loadData() {
         var params = ["area":"110000",
-                     "taskId": "",
-                     "menuCode": ""]
+                      "taskId": "",
+                      "menuCode": ""]
         if let userNo = UserInfo.instance?.userNo {
             params.updateValue(userNo, forKey: kUserNo)
         }
@@ -58,28 +62,26 @@ class PromotionVC: UIViewController {
                     self?.tableView.reloadData()
                 }
             }else{
-               self?.readDataFromLocal()
+                self?.readDataFromLocal()
             }
         }) {[weak self] (fail) -> (Void) in
-             self?.readDataFromLocal()
+            self?.readDataFromLocal()
         }
     }
     
-    /// 读取本地数据
+    /// 子线程读取本地数据 主线程刷新
     func readDataFromLocal(){
-      
-        let home = Bundle.main.path(forResource: "menu", ofType: "plist")
-        let menuArr = NSArray(contentsOfFile: home!)
-        let tempArr  = JSONDeserializer<MenuModel>.deserializeModelArrayFrom(array: menuArr) as! Array<MenuModel>
-        let tempModel = PromotionModel()
-        tempModel.menus = tempArr
-        
-        let homeBanner = Bundle.main.path(forResource: "homeBanner", ofType: "plist")
-        let menuArrBanner = NSArray(contentsOfFile: homeBanner!)
-        let tempArrBanner  = JSONDeserializer<SlideShowModel>.deserializeModelArrayFrom(array: menuArrBanner) as! Array<SlideShowModel>
-        tempModel.banners = tempArrBanner
-        self.promotionModel = tempModel
-        self.tableView.reloadData()
+        var tempModel = PromotionModel()
+        DispatchQueue.global().async {
+            let tempArr  = JSONDeserializer<MenuModel>.deserializeModelArrayFrom(array: "menu".getLocalPlistData()) as! Array<MenuModel>
+            tempModel.menus = tempArr
+            let tempArrBanner  = JSONDeserializer<SlideShowModel>.deserializeModelArrayFrom(array: "homeBanner".getLocalPlistData()) as! Array<SlideShowModel>
+            tempModel.banners = tempArrBanner
+            self.promotionModel = tempModel
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     deinit {
