@@ -160,6 +160,12 @@ extension String{
         
         return (self as NSString).strings(byAppendingPaths: [byAppendingPaths]).first!
     }
+    
+    /// 读取本地数据
+    func getLocalPlistData() -> NSArray? {
+        let path = Bundle.main.path(forResource: self, ofType: "plist")
+        return NSArray(contentsOfFile: path!)
+    }
 }
 
 ////MARK: 实现NSRange与Range的相互转换
