@@ -72,7 +72,7 @@ class PromotionSubVC: UIViewController {
     func readDataFromLocal(){
         DispatchQueue.global().async {
             let tempArr  = JSONDeserializer<GoodsModel>.deserializeModelArrayFrom(array: "goods\(self.menuCode!)".getLocalPlistData()) as! Array<GoodsModel>
-            var tempModel = PromotionModel()
+            let tempModel = PromotionModel()
             tempModel.activityGoods = tempArr
             self.promotionModel = tempModel
             DispatchQueue.main.async {
