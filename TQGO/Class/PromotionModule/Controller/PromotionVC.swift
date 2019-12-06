@@ -71,7 +71,7 @@ class PromotionVC: UIViewController {
     
     /// 子线程读取本地数据 主线程刷新
     func readDataFromLocal(){
-        var tempModel = PromotionModel()
+        let tempModel = PromotionModel()
         DispatchQueue.global().async {
             let tempArr  = JSONDeserializer<MenuModel>.deserializeModelArrayFrom(array: "menu".getLocalPlistData()) as! Array<MenuModel>
             tempModel.menus = tempArr
