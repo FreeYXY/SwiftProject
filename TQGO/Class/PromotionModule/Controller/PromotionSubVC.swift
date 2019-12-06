@@ -47,7 +47,10 @@ class PromotionSubVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(collectionView)
-        //        正式 01645200948672000591 测试64701103843409000591
+        loadData()
+    }
+    /// 请求数据
+    func loadData() {
         let params = ["userNo": "01645200948672000591",
                       "area":"110000",
                       "taskId":taskId ?? "a3e17811155f699c451b",
@@ -57,26 +60,25 @@ class PromotionSubVC: UIViewController {
             if respone.returnCode == KErrorCode.KErrorCode_SUCCESSE.rawValue{
                 self!.promotionModel = respone.data as? PromotionModel
                 self!.collectionView.reloadData()
-                
-            
-                
             }else{
                self!.readDataFromLocal()
             }
         }) {[weak self]  (fail) -> (Void) in
             self!.readDataFromLocal()
         }
-        
     }
-    /// 读取本地数据
+    
+    // 读取本地数据
     func readDataFromLocal(){
-        let home = Bundle.main.path(forResource: "goods\(self.menuCode!)", ofType: "plist")
-        let menuArr = NSArray(contentsOfFile: home!)
-        let tempArr  = JSONDeserializer<GoodsModel>.deserializeModelArrayFrom(array: menuArr) as! Array<GoodsModel>
-        let tempModel = PromotionModel()
-        tempModel.activityGoods = tempArr
-        self.promotionModel = tempModel
-        self.collectionView.reloadData()
+        DispatchQueue.global().async {
+            let tempArr  = JSONDeserializer<GoodsModel>.deserializeModelArrayFrom(array: "goods\(self.menuCode!)".getLocalPlistData()) as! Array<GoodsModel>
+            var tempModel = PromotionModel()
+            tempModel.activityGoods = tempArr
+            self.promotionModel = tempModel
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
 }
