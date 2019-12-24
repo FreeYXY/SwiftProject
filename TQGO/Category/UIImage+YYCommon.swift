@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import Photos
 
 extension UIImage{
     
@@ -86,5 +87,55 @@ extension UIImage{
         return output!
         
       
+    }
+}
+
+
+extension UIImage{
+    
+    /// 保存图片至相册
+    /// - Parameter albumName: 相册名字
+    func savePhoto(albumName:String) {
+        var assetsID:String?
+        PHPhotoLibrary.shared().performChanges({
+            assetsID = PHAssetCreationRequest.creationRequestForAsset(from: self).placeholderForCreatedAsset?.localIdentifier
+        }) { (success, error) in
+            if success == false {return}
+            let assetCollection = self.createAssetCollection(albumName: albumName)
+            PHPhotoLibrary.shared().performChanges({
+                guard assetsID  !=  nil else{
+                    return
+                }
+                let asset = PHAsset.fetchAssets(withLocalIdentifiers: [assetsID!], options: nil)
+                guard assetCollection  !=  nil else{
+                    return
+                }
+                PHAssetCollectionChangeRequest(for:assetCollection!)?.addAssets(asset)
+            }) { (success, error) in
+                
+            }
+        }
+    }
+    
+    /// 获取指定名字相册  存在直接返回 不存在则创建
+    /// - Parameter albumName: 相册名字
+    func createAssetCollection(albumName:String) -> PHAssetCollection? {
+        let assetCollections =  PHAssetCollection.fetchAssetCollections(with: PHAssetCollectionType.album, subtype: PHAssetCollectionSubtype.albumRegular, options: nil)
+        for i in  0..<assetCollections.count {
+            if  assetCollections[i].localizedTitle == albumName{
+                return assetCollections[i]
+            }
+        }
+        var assetsCollectionID:String?
+        PHPhotoLibrary.shared().performChanges({
+            let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: albumName)
+            assetsCollectionID = request.placeholderForCreatedAssetCollection.localIdentifier
+        }) { (success, error) in
+            
+        }
+        guard assetsCollectionID != nil else{
+            return nil
+        }
+        return PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [assetsCollectionID!], options: nil).lastObject
     }
 }

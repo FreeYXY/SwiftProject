@@ -192,7 +192,7 @@ extension UnicomAreaVC:UITableViewDelegate,UITableViewDataSource{
     }
     
     func callback() {
-        DLog(message: "++++++++++++++++++____________+++++++++++++++++")
+        DLog("++++++++++++++++++____________+++++++++++++++++")
     }
     
 }

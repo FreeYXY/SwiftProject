@@ -21,7 +21,7 @@ class RealmManager {
     static let instance :Realm = {
 
         let realm = try! Realm()
-        DLog(message: "realm数据库存储路径：\(realm.configuration.fileURL!.absoluteString)")
+        DLog("realm数据库存储路径：\(realm.configuration.fileURL!.absoluteString)")
         return realm
         // 获取 Realm 文件的父目录
 //        let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path

@@ -26,11 +26,11 @@ protocol APIInterfaceProtocol {
 
 class NetworkManager {
    
-    private static var sharedSessionManager: Session = {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 0.2//请求超时时间
-        return Session(configuration: configuration)
-    }()
+//    private static var sharedSessionManager: Session = {
+//        let configuration = URLSessionConfiguration.default
+//        configuration.timeoutIntervalForRequest = 0.2//请求超时时间
+//        return Session(configuration: configuration)
+//    }()
 
     private static func commonAPIParameters()->Dictionary<String,String>{
         let userInfo = UserInfo.instance
@@ -79,11 +79,11 @@ class NetworkManager {
         }
         // 拼接商户的秘钥
         jointParamsStr = String(format: "%@%@", jointParamsStr,API_SECRET_KEY);
-        DLog(message:String(format: "\n************拼接商户的秘钥后的管道数据************：\n%@", jointParamsStr))
+        DLog("\n************拼接商户的秘钥后的管道数据************：\n \(jointParamsStr)")
         // MD5加密
         let signStr = jointParamsStr.md5;
         parameters["sign"] = signStr as AnyObject
-        DLog(message: String(format:"\n************完成签名参数************:\n%@" ,parameters));
+        DLog("\n************完成签名参数************:\n\(parameters)");
         return parameters
     }
     
@@ -105,19 +105,19 @@ class NetworkManager {
             "Content-type" : "application/json"
         ]
       
-        sharedSessionManager.request(API_BASE ,
+        Alamofire.request(API_BASE ,
                           method: .post,
                           parameters: paramDict,
                           encoding:JSONEncoding.default,
                           headers:headers).responseJSON{ (response) in
                             switch response.result {
                             case .success(let value):
-                                DLog(message:"接口路径：||-------------" + interface + "-------------||")
-                                DLog(message:JSON(value))
+                                DLog("接口路径：||-------------" + interface + "-------------||")
+                                DLog(JSON(value))
                                 completion(APIResultModel.deserialize(from:value as? Dictionary) ?? APIResultModel())
                                 return
                             case .failure(let error):
-                                DLog(message: String(describing: error))
+                                DLog(String(describing: error))
                                 failed(error)
                                 
                                 return
