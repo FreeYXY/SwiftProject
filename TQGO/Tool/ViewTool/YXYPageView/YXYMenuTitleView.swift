@@ -60,7 +60,8 @@ class YXYMenuTitleView: UIView {
     
     lazy var menuScrollView: UIScrollView = {
         let menuScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.width, height: self.height))
-        menuScrollView.contentSize = CGSize(width: (menuScrollCount*menuWidth), height: self.height)
+        menuScrollView.showsHorizontalScrollIndicator  = false
+        menuScrollView.contentSize = CGSize(width: width, height: self.height)
         return menuScrollView
     }()
     
@@ -157,9 +158,9 @@ class YXYMenuTitleView: UIView {
             menuScrollView.addSubview(menu)
             menuArr.append(menu)
             totalMenuWidth = totalMenuWidth + menuWidth
-            
-           
         }
+        menuScrollView.contentSize = CGSize(width: totalMenuWidth, height: self.height)
+
     }
     
     @objc func menuAction(sender:UIButton){

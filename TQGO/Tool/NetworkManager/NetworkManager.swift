@@ -26,11 +26,11 @@ protocol APIInterfaceProtocol {
 
 class NetworkManager {
    
-//    private static var sharedSessionManager: Session = {
-//        let configuration = URLSessionConfiguration.default
-//        configuration.timeoutIntervalForRequest = 0.2//请求超时时间
-//        return Session(configuration: configuration)
-//    }()
+    private static var sharedSessionManager: SessionManager = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 0.2//请求超时时间
+        return SessionManager(configuration: configuration)
+    }()
 
     private static func commonAPIParameters()->Dictionary<String,String>{
         let userInfo = UserInfo.instance
@@ -105,7 +105,7 @@ class NetworkManager {
             "Content-type" : "application/json"
         ]
       
-        Alamofire.request(API_BASE ,
+        sharedSessionManager.request(API_BASE ,
                           method: .post,
                           parameters: paramDict,
                           encoding:JSONEncoding.default,
