@@ -25,12 +25,12 @@ class YXYBanner: UIView {
     var imageURLStringsGroup:[String] = []{
         didSet{
             // 仅一张轮播图时 不滚动 多张才滚动
-            if self.imageURLStringsGroup.count > 1 {
-                self.collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: self.scrollPosition, animated: false)
+            if imageURLStringsGroup.count > 1 {
+                collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: scrollPosition, animated: false)
 //                self.bringSubviewToFront(self.pageControl)
 //                self.pageControl.numberOfPages = self.pictures.count
 //                self.pageControl.currentPage = 0
-                self.startTimer()
+                startTimer()
             }
         }
     }
@@ -107,15 +107,15 @@ class YXYBanner: UIView {
         case 1:
             break
         default:
-            firstIndex = (self.index - 1) < 0 ? imageURLStringsGroup.count - 1 : self.index - 1
-            secondIndex = self.index
-            thirdIndex = (self.index + 1) > imageURLStringsGroup.count - 1 ? 0 : self.index + 1
+            firstIndex = (index - 1) < 0 ? imageURLStringsGroup.count - 1 : index - 1
+            secondIndex = index
+            thirdIndex = (index + 1) > imageURLStringsGroup.count - 1 ? 0 : index + 1
         }
         return [imageURLStringsGroup[firstIndex] ,imageURLStringsGroup[secondIndex] ,imageURLStringsGroup[thirdIndex]]
     }
     var index: Int = 0 {
         willSet {
-            if self.titlesGroup.count > 0 {
+            if titlesGroup.count > 0 {
 //                self.titleLab.text = self.titles.count > newValue ? self.titles[newValue] : ""
             }
         }
@@ -124,15 +124,15 @@ class YXYBanner: UIView {
     lazy var contentOffset: CGFloat = {
         switch self.direction {
         case .left, .right:
-            return  self.collectionView.contentOffset.x
+            return  collectionView.contentOffset.x
             
         case .top, .bottom:
-            return  self.collectionView.contentOffset.y
+            return  collectionView.contentOffset.y
         }
     }()
     
     lazy var scrollPosition: UICollectionView.ScrollPosition = {
-        switch self.direction {
+        switch direction {
         case .left:
             return UICollectionView.ScrollPosition.left
             
@@ -151,18 +151,18 @@ class YXYBanner: UIView {
     open func register(_ cellClasss: [Swift.AnyClass?], identifiers: [String], customCellBlock: @escaping YXYBannerViewCustomCellBlock) {
         self.customCellBlock = customCellBlock
         for (index, identifier) in identifiers.enumerated() {
-            self.collectionView.register(cellClasss[index], forCellWithReuseIdentifier: identifier)
+            collectionView.register(cellClasss[index], forCellWithReuseIdentifier: identifier)
         }
     }
     
     lazy var layout:UICollectionViewFlowLayout = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = self.frame.size
+        layout.itemSize = size
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
-        switch self.direction {
+        switch direction {
         case .left, .right:
             layout.scrollDirection = .horizontal
             
@@ -173,7 +173,7 @@ class YXYBanner: UIView {
     }()
     
     lazy var collectionView: UICollectionView = {
-        let collectionView: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), collectionViewLayout: layout)
+        let collectionView: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.height), collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(YXYCycleScrollViewDefaultCell.self, forCellWithReuseIdentifier: YXYBannerViewDefaultCell_id)
@@ -182,20 +182,20 @@ class YXYBanner: UIView {
         collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        self.addSubview(collectionView)
+        addSubview(collectionView)
         return collectionView
     }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layout.itemSize = self.bounds.size
+        layout.itemSize = bounds.size
         collectionView.collectionViewLayout = layout
-        collectionView.frame = self.bounds
-        self.startTimer()
+        collectionView.frame = bounds
+        startTimer()
     }
 
     deinit {
-        self.stopTimer()
+        stopTimer()
     }
 }
 
@@ -205,25 +205,22 @@ extension YXYBanner:UICollectionViewDataSource,UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let customCellBlock = self.customCellBlock  {
-            return customCellBlock(collectionView, indexPath, self.datas![indexPath.item])
+        if let customCellBlock = customCellBlock  {
+            return customCellBlock(collectionView, indexPath, datas![indexPath.item])
         }else{
             let defaultCell  = collectionView.dequeueReusableCell(withReuseIdentifier: YXYBannerViewDefaultCell_id, for: indexPath) as! YXYCycleScrollViewDefaultCell
-            if let imageContentMode = self.imageContentMode {
+            if let imageContentMode = imageContentMode {
                 defaultCell.imageView.contentMode = imageContentMode
             }
-            if (self.datas?.count)! < 1{
-                
-//                defaultCell.imageView.kf.setImage(with: nil) 
-//                defaultCell.imageView.kf.setImage(with: nil, placeholder: UIImage.init(named: "icon_goods_default"), options: [.processor(DefaultImageProcessor.default)], progressBlock: nil, completionHandler: { result in
-//                })
+            if (datas?.count)! < 1{
+                defaultCell.imageView.image = placeholderImage
                 return defaultCell
             }
             
-            if self.datas![indexPath.item].hasPrefix("http") {
-                defaultCell.imageView.kf.setImage(with: URL(string: self.datas![indexPath.item]), placeholder: self.placeholderImage)
+            if datas![indexPath.item].hasPrefix("http") {
+                defaultCell.imageView.kf.setImage(with: URL(string: datas![indexPath.item]), placeholder: placeholderImage)
             } else {
-                defaultCell.imageView.image = UIImage(named: self.datas![indexPath.item])
+                defaultCell.imageView.image = UIImage(named: datas![indexPath.item])
             }
             return defaultCell
         }
@@ -233,40 +230,40 @@ extension YXYBanner:UICollectionViewDataSource,UICollectionViewDelegate{
 
 extension YXYBanner:UIScrollViewDelegate{
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.stopTimer()
+        stopTimer()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.startTimer()
+        startTimer()
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var offset: CGFloat = 0
-        switch self.direction {
+        switch direction {
         case .left, .right:
             offset = scrollView.contentOffset.x
         case .top, .bottom:
             offset = scrollView.contentOffset.y
         }
         
-        if offset >= self.contentOffset * 2 {
+        if offset >= contentOffset * 2 {
             
-            if self.index == self.imageURLStringsGroup.count - 1 {
-                self.index = 0
+            if index == imageURLStringsGroup.count - 1 {
+                index = 0
             } else {
-                self.index += 1
+                index += 1
             }
-            self.collectionView.reloadData()
-            self.collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: self.scrollPosition, animated: false)
+            collectionView.reloadData()
+            collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: scrollPosition, animated: false)
         }
         
         if offset <= 0 {
-            if self.index == 0 {
-                self.index = self.imageURLStringsGroup.count - 1
+            if index == 0 {
+                index = imageURLStringsGroup.count - 1
             } else {
-                self.index -= 1
+                index -= 1
             }
-            self.collectionView.reloadData()
-            self.collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: self.scrollPosition, animated: false)
+            collectionView.reloadData()
+            collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: scrollPosition, animated: false)
         }
 
 //        UIView.animate(withDuration: 0.3) {
@@ -276,9 +273,9 @@ extension YXYBanner:UIScrollViewDelegate{
     }
     // 添加定时器
     func startTimer() {
-        self.stopTimer()
-        if self.autoScrollDelay >= 0.5 {
-            self.timer =  Timer.scheduledTimer(withTimeInterval: self.autoScrollDelay, repeats: true) { (timer) in
+        stopTimer()
+        if autoScrollDelay >= 0.5 {
+            timer =  Timer.scheduledTimer(withTimeInterval: autoScrollDelay, repeats: true) { (timer) in
                 var item: Int = 0
                 switch self.direction {
                 case .left, .bottom:
@@ -288,7 +285,7 @@ extension YXYBanner:UIScrollViewDelegate{
                 }
                 self.collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: self.scrollPosition, animated: true)
             }
-            RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.common)
+            RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
         }
     }
     
