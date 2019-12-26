@@ -17,16 +17,13 @@ class ADCell: UITableViewCell {
     }
     
     func setupView() -> Void {
-        cycleScrollView = YXYBanner(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth*150/375))
+        cycleScrollView = YXYBanner()
         contentView.addSubview(cycleScrollView!)
         cycleScrollView?.placeholderImage = UIImage(named: "icon_home_banner_default")
         cycleScrollView!.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize(width: kScreenWidth, height: kScreenWidth*150/375))
             make.edges.equalToSuperview()
         }
-//        cycleScrollView.setNeedsLayout()
-//        cycleScrollView.layoutIfNeeded()
-//        cycleScrollView.imageURLStringsGroup = ["http://pic29.nipic.com/20130512/12428836_110546647149_2.jpg","http://www.techwis.cn/privilegeGo/image/1543909847890.jpg","http://www.techwis.cn/privilegeGo/image/1511955924958.png","http://www.techwis.cn/privilegeGo/image/1533260373656.png"]
     }
     
     required init?(coder aDecoder: NSCoder) {

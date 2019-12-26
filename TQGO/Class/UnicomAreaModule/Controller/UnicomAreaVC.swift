@@ -9,10 +9,10 @@
 import UIKit
 import MJRefresh
 
-let kADCell_id = "kADCell_id"
-let kUnicomMenuCell_id = "kUnicomMenuCell_id"
-let kHotGoodsCell_id = "kHotGoodsCell_id"
-let kDiscountAreaCell_id = "kDiscountAreaCell_id"
+private let kUnicomADCell_id = "kUnicomADCell_id"
+private let kUnicomMenuCell_id = "kUnicomMenuCell_id"
+private let kHotGoodsCell_id = "kHotGoodsCell_id"
+private let kDiscountAreaCell_id = "kDiscountAreaCell_id"
 
 class UnicomAreaVC: UIViewController,UITextFieldDelegate,GoodsDetailDelegate{
 
@@ -25,7 +25,7 @@ class UnicomAreaVC: UIViewController,UITextFieldDelegate,GoodsDetailDelegate{
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ADCell.self, forCellReuseIdentifier: kADCell_id)
+        tableView.register(ADCell.self, forCellReuseIdentifier: kUnicomADCell_id)
         tableView.register(UnicomMenuCell.self, forCellReuseIdentifier: kUnicomMenuCell_id)
         tableView.register(HotGoodsCell.self, forCellReuseIdentifier: kHotGoodsCell_id)
         tableView.register(DiscountAreaCell.self, forCellReuseIdentifier: kDiscountAreaCell_id)
@@ -160,7 +160,7 @@ extension UnicomAreaVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let adCell = tableView.dequeueReusableCell(withIdentifier: kADCell_id, for: indexPath) as! ADCell
+            let adCell = tableView.dequeueReusableCell(withIdentifier: kUnicomADCell_id, for: indexPath) as! ADCell
             let count = self.unicomIndexModel?.banners?.count
             if count ?? 0 > 0 {
                 adCell.setSlideArr(banner: (self.unicomIndexModel?.banners!)!)

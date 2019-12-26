@@ -10,8 +10,9 @@ import UIKit
 import RealmSwift
 import MJRefresh
 
-let kSlideViewH = (kScreenWidth * 135/375)
-let kPageViewCell_id = "kPageViewCell_id"
+private let kSlideViewH = (kScreenWidth * 135/375)
+private let kPageViewCell_id = "kPageViewCell_id"
+private let kADCell_id = "kADCell_id"
 
 class PromotionVC: UIViewController {
     var promotionModel:PromotionModel?
