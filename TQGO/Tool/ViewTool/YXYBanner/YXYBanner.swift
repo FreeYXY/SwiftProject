@@ -273,6 +273,9 @@ extension YXYBanner:UIScrollViewDelegate{
     }
     // 添加定时器
     func startTimer() {
+        if imageURLStringsGroup.count < 1 {
+            return
+        }
         stopTimer()
         if autoScrollDelay >= 0.5 {
             timer =  Timer.scheduledTimer(withTimeInterval: autoScrollDelay, repeats: true) { (timer) in
