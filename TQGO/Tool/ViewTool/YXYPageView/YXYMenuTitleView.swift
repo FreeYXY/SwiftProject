@@ -150,7 +150,7 @@ class YXYMenuTitleView: UIView {
         for (_, val) in titleArr.enumerated() {
             let menuWidth = val.width(fontSize: menuFont) + menuMargin
             let menu = UIButton(type: UIButton.ButtonType.custom)
-            menu.frame = CGRect(x: totalMenuWidth, y: 0.0, width: menuWidth, height: self.height)
+            menu.frame = CGRect(x: totalMenuWidth, y: 0.0, width: menuWidth, height: height)
             menu.setTitle(val, for: UIControl.State.normal)
             menu.setTitleColor(.black, for: .normal)
             menu.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -159,8 +159,7 @@ class YXYMenuTitleView: UIView {
             menuArr.append(menu)
             totalMenuWidth = totalMenuWidth + menuWidth
         }
-        menuScrollView.contentSize = CGSize(width: totalMenuWidth, height: self.height)
-
+        menuScrollView.contentSize.width = totalMenuWidth
     }
     
     @objc func menuAction(sender:UIButton){
