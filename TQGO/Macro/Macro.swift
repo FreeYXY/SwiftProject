@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import UIKit
 import SnapKit
+
 @_exported import RxSwift
 @_exported import RxCocoa
 @_exported import RealmSwift
 @_exported import HandyJSON
 @_exported import SwiftyJSON
 @_exported import Kingfisher
-@_exported import Toast_Swift
-
+@_exported import Toast
 
 let kScreenHeight = UIScreen.main.bounds.height
 let kScreenWidth = UIScreen.main.bounds.width

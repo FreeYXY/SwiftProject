@@ -6,6 +6,7 @@
 //  Created by YXY on 2019/3/21.
 //  Copyright © 2019 Techwis. All rights reserved.
 //
+import UIKit
 
 class YXYPageView: UIView {
     

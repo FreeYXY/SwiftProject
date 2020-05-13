@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension UITextField{
     
     func leftViewWithImgName(imgName:String , size:CGSize){

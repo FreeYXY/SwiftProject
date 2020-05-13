@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension UISegmentedControl {
 
     public func ensureiOS12Style() {

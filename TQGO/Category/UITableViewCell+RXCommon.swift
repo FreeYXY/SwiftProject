@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension Reactive where Base: UITableViewCell {
     // 提供给外界重用序列
     public var prepareForReuse: RxSwift.Observable<Void> {

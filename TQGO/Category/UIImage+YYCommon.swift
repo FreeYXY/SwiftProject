@@ -9,7 +9,7 @@
 
 import Foundation
 import Photos
-
+import UIKit
 extension UIImage{
     
     

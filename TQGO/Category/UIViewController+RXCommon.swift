@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 extension Reactive where Base: UIViewController {
     /// 用于 `startAnimating()` 和 `stopAnimating()` 方法的 binder

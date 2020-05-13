@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 extension UIColor {
 
     public func asImage(_ size:CGSize) -> UIImage? {

@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 typealias successClosure = (APIResultModel) -> (Void)
 typealias failClosure = (Any) -> (Void)
