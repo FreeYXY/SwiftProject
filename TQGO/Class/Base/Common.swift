@@ -8,7 +8,7 @@
 
 import Foundation
 import Contacts
-
+// test 2
 class Common {
     
     /// 通讯录授权
