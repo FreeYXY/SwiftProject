@@ -37,14 +37,20 @@ class PromotionVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "促销"
-    
+       
         kNotife.addObserver(self, selector: #selector(changeScrollStatus), name: .kLeaveTop, object: nil)
-    
+//        navigationController?.navigationBar.isTranslucent = false
+//        if #available(iOS 13.0, *) {
+//            navigationController?.navigationBar.showsLargeContentViewer = false
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//                tableView.mj_header?.ignoredScrollViewContentInsetTop = 164
         tableView.backgroundColor = .white
-        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-            [unowned self] in
-            self.tableView.mj_header?.endRefreshing()
-        })
+//        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+//            [unowned self] in
+//            self.tableView.mj_header?.endRefreshing()
+//        })
         loadData()
     }
     
