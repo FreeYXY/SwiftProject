@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+// 1
 enum kTimeFormat:String{
     case format_default            = "yyyy-MM-dd HH:mm:ss"
     case format_yyMdHm             = "yy-MM-dd HH:mm"
@@ -29,7 +29,9 @@ enum kTimeFormat:String{
     case format_yM                 = "yyyy-MM"
     case format_yMdChangeSeparator = "yyyy.MM.dd"
 }
-
+// 2
 extension Date{
   
 }
+//3
+//4
