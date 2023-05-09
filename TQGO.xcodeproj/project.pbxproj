@@ -814,14 +814,14 @@
 			);
 			mainGroup = 9A70490B20F2FD5600982DCB;
 			packageReferences = (
-				9A4F3B1C23B1C14200B816F4 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-				9A4F3B1F23B1C26C00B816F4 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				9A4F3B2223B1C2CF00B816F4 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				9A4F3B2523B1DB9300B816F4 /* XCRemoteSwiftPackageReference "HandyJSON" */,
-				9A4F3B2823B1DDBA00B816F4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				9A4F3B2B23B1DE3E00B816F4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				9A4F3B3323B1E01900B816F4 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				9A4F3B1C23B1C14200B816F4 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */,
+				9A4F3B1F23B1C26C00B816F4 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				9A4F3B2223B1C2CF00B816F4 /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				9A4F3B2523B1DB9300B816F4 /* XCRemoteSwiftPackageReference "HandyJSON.git" */,
+				9A4F3B2823B1DDBA00B816F4 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				9A4F3B2B23B1DE3E00B816F4 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */,
+				9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift.git" */,
+				9A4F3B3323B1E01900B816F4 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
 			);
 			productRefGroup = 9A70491520F2FD5600982DCB /* Products */;
 			projectDirPath = "";
@@ -911,12 +911,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TQGO/Pods-TQGO-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TQGO/Pods-TQGO-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TQGO/Pods-TQGO-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1193,7 +1194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yxy.swift.try;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.yxy.swift.try.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TQGO/Macro/TQGO-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1216,7 +1217,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yxy.swift.try;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.yxy.swift.try.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TQGO/Macro/TQGO-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1352,7 +1353,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9A4F3B1C23B1C14200B816F4 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		9A4F3B1C23B1C14200B816F4 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
@@ -1360,7 +1361,7 @@
 				minimumVersion = 4.3.0;
 			};
 		};
-		9A4F3B1F23B1C26C00B816F4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		9A4F3B1F23B1C26C00B816F4 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1368,7 +1369,7 @@
 				minimumVersion = 4.9.1;
 			};
 		};
-		9A4F3B2223B1C2CF00B816F4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		9A4F3B2223B1C2CF00B816F4 /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1376,7 +1377,7 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		9A4F3B2523B1DB9300B816F4 /* XCRemoteSwiftPackageReference "HandyJSON" */ = {
+		9A4F3B2523B1DB9300B816F4 /* XCRemoteSwiftPackageReference "HandyJSON.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alibaba/HandyJSON.git";
 			requirement = {
@@ -1384,7 +1385,7 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		9A4F3B2823B1DDBA00B816F4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		9A4F3B2823B1DDBA00B816F4 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1392,7 +1393,7 @@
 				minimumVersion = 5.12.0;
 			};
 		};
-		9A4F3B2B23B1DE3E00B816F4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+		9A4F3B2B23B1DE3E00B816F4 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -1400,7 +1401,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1408,7 +1409,7 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		9A4F3B3323B1E01900B816F4 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+		9A4F3B3323B1E01900B816F4 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -1421,47 +1422,47 @@
 /* Begin XCSwiftPackageProductDependency section */
 		9A4F3B1D23B1C14200B816F4 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B1C23B1C14200B816F4 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 9A4F3B1C23B1C14200B816F4 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
 			productName = RealmSwift;
 		};
 		9A4F3B2023B1C26C00B816F4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B1F23B1C26C00B816F4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 9A4F3B1F23B1C26C00B816F4 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		9A4F3B2323B1C2CF00B816F4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B2223B1C2CF00B816F4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 9A4F3B2223B1C2CF00B816F4 /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 		9A4F3B2623B1DB9300B816F4 /* HandyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B2523B1DB9300B816F4 /* XCRemoteSwiftPackageReference "HandyJSON" */;
+			package = 9A4F3B2523B1DB9300B816F4 /* XCRemoteSwiftPackageReference "HandyJSON.git" */;
 			productName = HandyJSON;
 		};
 		9A4F3B2923B1DDBA00B816F4 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B2823B1DDBA00B816F4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 9A4F3B2823B1DDBA00B816F4 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 		9A4F3B2C23B1DE3E00B816F4 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B2B23B1DE3E00B816F4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			package = 9A4F3B2B23B1DE3E00B816F4 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */;
 			productName = SwiftyJSON;
 		};
 		9A4F3B2F23B1DECC00B816F4 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxSwift;
 		};
 		9A4F3B3123B1DECC00B816F4 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 9A4F3B2E23B1DECC00B816F4 /* XCRemoteSwiftPackageReference "RxSwift.git" */;
 			productName = RxCocoa;
 		};
 		9A4F3B3423B1E01900B816F4 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A4F3B3323B1E01900B816F4 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			package = 9A4F3B3323B1E01900B816F4 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
 			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
