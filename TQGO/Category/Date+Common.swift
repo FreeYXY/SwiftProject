@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+不规范协助
 // 1
 enum kTimeFormat:String{
     case format_default            = "yyyy-MM-dd HH:mm:ss"
